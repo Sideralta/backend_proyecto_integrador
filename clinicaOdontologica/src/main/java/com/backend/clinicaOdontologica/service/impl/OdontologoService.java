@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class OdontologoServiceService implements IOdontologoService {
+public class OdontologoService implements IOdontologoService {
     private IDao<Odontologo> odontologoIDao;
 
-    public OdontologoServiceService(IDao<Odontologo> odontologoIDao) {
+    public OdontologoService(IDao<Odontologo> odontologoIDao) {
         this.odontologoIDao = odontologoIDao;
     }
 

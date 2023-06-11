@@ -7,7 +7,6 @@ import com.backend.clinicaOdontologica.dao.IDao;
 import com.backend.clinicaOdontologica.entity.Odontologo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
             connection.setAutoCommit(false);
 
             PreparedStatement ps = connection.prepareStatement("INSERT INTO ODONTOLOGOS (MATRICULA, NOMBRE, APELLIDO) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, odontologo.getNumeroMatricula());
+            ps.setString(1, odontologo.getNumeroMatricula());
             ps.setString(2, odontologo.getNombre());
             ps.setString(3, odontologo.getApellido());
             ps.execute();
@@ -216,7 +215,7 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
 
     private Odontologo crearObjetoOdontologo(ResultSet resultSet) throws SQLException {
         int idOdontologo = resultSet.getInt("id");
-        int numeroMatricula = resultSet.getInt("matricula");
+        String numeroMatricula = resultSet.getInt("matricula");
         String nombreOdontologo = resultSet.getString("nombre");
         String apellidoOdontologo = resultSet.getString("apellido");
         return new Odontologo(idOdontologo, numeroMatricula, nombreOdontologo, apellidoOdontologo);

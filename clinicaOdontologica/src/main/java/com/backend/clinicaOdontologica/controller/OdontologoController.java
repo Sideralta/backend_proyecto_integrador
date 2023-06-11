@@ -1,9 +1,8 @@
 package com.backend.clinicaOdontologica.controller;
 
 import com.backend.clinicaOdontologica.entity.Odontologo;
-import com.backend.clinicaOdontologica.service.impl.OdontologoServiceService;
+import com.backend.clinicaOdontologica.service.impl.OdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,10 +11,10 @@ import java.util.List;
 @RequestMapping("/odontologos")
 public class OdontologoController {
 
-    private OdontologoServiceService odontologoService;
+    private OdontologoService odontologoService;
 
     @Autowired
-    public OdontologoController(OdontologoServiceService odontologoService) {this.odontologoService = odontologoService;}
+    public OdontologoController(OdontologoService odontologoService) {this.odontologoService = odontologoService;}
 
 
     /*@GetMapping("/index")
