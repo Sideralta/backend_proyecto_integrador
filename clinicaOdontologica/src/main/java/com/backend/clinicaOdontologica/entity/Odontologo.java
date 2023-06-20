@@ -1,7 +1,7 @@
 package com.backend.clinicaOdontologica.entity;
 
 public class Odontologo {
-    private int id;
+    private Long id;
     private String numeroMatricula; //revisar cambiarlo por String
     private String nombre;
     private String apellido;
@@ -9,7 +9,7 @@ public class Odontologo {
 
 
 
-    public Odontologo(int id, String numeroMatricula, String nombre, String apellido) {
+    public Odontologo(Long id, String numeroMatricula, String nombre, String apellido) {
         this.id = id;
         this.numeroMatricula = numeroMatricula;
         this.nombre = nombre;
@@ -22,11 +22,11 @@ public class Odontologo {
         this.apellido = apellido;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,4 +1,4 @@
-package com.backend.clinicaOdontologica.dao;
+package com.backend.clinicaOdontologica.repository;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ public interface IDao<T> {
 
     List<T> listarTodos();
 
-    T buscarPorId(int id);
+    T buscarPorId(Long id);
 
     T buscarPorCriterio(String dni);
 

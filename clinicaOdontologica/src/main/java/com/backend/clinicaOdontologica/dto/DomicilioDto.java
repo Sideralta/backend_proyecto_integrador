@@ -1,27 +1,23 @@
-package com.backend.clinicaOdontologica.entity;
+package com.backend.clinicaOdontologica.dto;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import javax.persistence.*;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class DomicilioDto {
 
-@Entity
-@Table(name = "DOMICILIOS")
-public class Domicilio {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String calle;
     private int numero;
     private String localidad;
     private String provincia;
 
-    public Domicilio(){
+
+    public DomicilioDto(){
 
     }
 
-
-    public Domicilio(String calle, int numero, String localidad, String provincia) {
+    public DomicilioDto(Long id, String calle, int numero, String localidad, String provincia) {
+        this.id = id;
         this.calle = calle;
         this.numero = numero;
         this.localidad = localidad;
@@ -30,6 +26,10 @@ public class Domicilio {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCalle() {
@@ -63,5 +63,4 @@ public class Domicilio {
     public void setProvincia(String provincia) {
         this.provincia = provincia;
     }
-
 }

@@ -32,7 +32,7 @@ public class OdontologoController {
     }
 
     @GetMapping("/{id}")
-    public Odontologo buscarOdontologoPorId(@PathVariable int id){
+    public Odontologo buscarOdontologoPorId(@PathVariable Long id){
         return odontologoService.buscarOdontologo(id);
     }
 

@@ -1,18 +1,19 @@
-package com.backend.clinicaOdontologica.dao.impl;
+package com.backend.clinicaOdontologica.repository.impl;
 
 
 
-import com.backend.clinicaOdontologica.dao.H2Connection;
-import com.backend.clinicaOdontologica.dao.IDao;
+import com.backend.clinicaOdontologica.repository.H2Connection;
+import com.backend.clinicaOdontologica.repository.IDao;
 import com.backend.clinicaOdontologica.entity.Odontologo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Component --clase 23--
+@Component
 public class OdontologoDaoH2 implements IDao<Odontologo> {
     private static final Logger LOGGER = LoggerFactory.getLogger(OdontologoDaoH2.class);
 
@@ -33,7 +34,7 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
             ResultSet key = ps.getGeneratedKeys();
             while (key.next()) {
 
-                int id = key.getInt(1);
+                Long id = key.getInt(1);
                 odontologo.setId(id);
             }
             LOGGER.info("Odontologo ingresado: " + odontologo);
@@ -105,7 +106,7 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
     }
 
     @Override
-    public Odontologo buscarPorId(int id) {
+    public Odontologo buscarPorId(Long id) {
         Connection connection = null;
         Odontologo odontologo = null;
         try {
@@ -181,7 +182,7 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
             connection = H2Connection.getConnection();
             connection.setAutoCommit(false);
             PreparedStatement ps = connection.prepareStatement("UPDATE ODONTOLOGOS SET MATRICULA = ?, NOMBRE = ?, APELLIDO = ? WHERE ID = ?");
-            ps.setInt(1, odontologo.getNumeroMatricula());
+            ps.setString(1, odontologo.getNumeroMatricula());
             ps.setString(2, odontologo.getNombre());
             ps.setString(3, odontologo.getApellido());
             ps.execute();
@@ -214,8 +215,8 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
     }
 
     private Odontologo crearObjetoOdontologo(ResultSet resultSet) throws SQLException {
-        int idOdontologo = resultSet.getInt("id");
-        String numeroMatricula = resultSet.getInt("matricula");
+        Long idOdontologo = resultSet.getInt("id");
+        String numeroMatricula = resultSet.getString("matricula");
         String nombreOdontologo = resultSet.getString("nombre");
         String apellidoOdontologo = resultSet.getString("apellido");
         return new Odontologo(idOdontologo, numeroMatricula, nombreOdontologo, apellidoOdontologo);

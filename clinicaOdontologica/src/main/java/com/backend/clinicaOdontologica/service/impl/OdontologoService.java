@@ -2,7 +2,7 @@ package com.backend.clinicaOdontologica.service.impl;
 
 
 
-import com.backend.clinicaOdontologica.dao.IDao;
+import com.backend.clinicaOdontologica.repository.IDao;
 import com.backend.clinicaOdontologica.entity.Odontologo;
 import com.backend.clinicaOdontologica.service.IOdontologoService;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class OdontologoService implements IOdontologoService {
     }
 
     @Override
-    public Odontologo buscarOdontologo(int id) {
+    public Odontologo buscarOdontologo(Long id) {
         return odontologoIDao.buscarPorId(id);
     }
 

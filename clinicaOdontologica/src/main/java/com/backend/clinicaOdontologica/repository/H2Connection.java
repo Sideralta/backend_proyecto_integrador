@@ -1,4 +1,4 @@
-package com.backend.clinicaOdontologica.dao;
+package com.backend.clinicaOdontologica.repository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
