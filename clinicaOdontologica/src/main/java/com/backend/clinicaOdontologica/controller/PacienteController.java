@@ -39,7 +39,7 @@ public class PacienteController {
         ResponseEntity<PacienteDto> respuesta;
         PacienteDto pacienteDto = pacienteService.actualizarPaciente(paciente);
         if(pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.OK);
-        else respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build()
+        else respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
         return respuesta;
     }

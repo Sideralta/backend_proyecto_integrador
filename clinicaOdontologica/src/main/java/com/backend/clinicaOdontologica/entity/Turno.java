@@ -3,6 +3,8 @@ package com.backend.clinicaOdontologica.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,22 +15,27 @@ public class Turno {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
 
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "odontologo_id")
     private Odontologo odontologo;
-    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private LocalDateTime fecha;
+    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    @FutureOrPresent(message = "La fecha no puede ser anterior al dia de hoy")
+    @NotNull(message = "Especifique fecha y hora del turno")
+    private LocalDateTime fechaYhora;
 
-    public Turno() {
-    }
 
-    public Turno(Paciente paciente, Odontologo odontologo, LocalDateTime fecha) {
+
+    public Turno(Paciente paciente, Odontologo odontologo, LocalDateTime fechaYhora) {
         this.paciente = paciente;
         this.odontologo = odontologo;
-        this.fecha = fecha;
+        this.fechaYhora = fechaYhora;
+    }
+
+    public Turno() {
     }
 
     public Long getId() {
@@ -52,16 +59,13 @@ public class Turno {
         this.odontologo = odontologo;
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
+    public LocalDateTime getFechaYhora() {
+        return fechaYhora;
     }
 
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
+    public void setFechaYhora(LocalDateTime fechaYhora) {
+        this.fechaYhora = fechaYhora;
     }
 
-    @Override
-    public String toString(){
-        return "Turno{" + "id=" + id + ", paciente=" + paciente + ", odontologo=" + odontologo + ", fecha=" + fecha + "}";
-    }
+
 }

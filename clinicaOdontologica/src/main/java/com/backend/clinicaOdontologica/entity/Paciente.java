@@ -37,6 +37,11 @@ public class Paciente {
     @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
 
+   @OneToOne(mappedBy = "paciente")
+    private Turno turno;
+
+
+
 
  
 

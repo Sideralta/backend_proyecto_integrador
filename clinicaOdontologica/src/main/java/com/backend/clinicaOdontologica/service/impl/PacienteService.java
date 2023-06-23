@@ -39,9 +39,12 @@ public class PacienteService implements IPacienteService {
                 .map(paciente -> {
                     Domicilio dom = paciente.getDomicilio();
                     DomicilioDto domicilioDto = objectMapper.convertValue(dom, DomicilioDto.class);
-                            return new PacienteDto(paciente.getId(), paciente.getNombre(), paciente.getDni(), paciente.getFechaIngreso(), domicilioDto);
+                    return new PacienteDto(paciente.getId(), paciente.getNombre(), paciente.getApellido(), paciente.getDni(), paciente.getFechaIngreso(), domicilioDto);
+                })
+                .toList();
 
-                }).toList();
+        LOGGER.info("Lista de todos los pacientes: {}", pacienteDtos);
+        return pacienteDtos;
 
     }
 
@@ -82,14 +85,13 @@ public class PacienteService implements IPacienteService {
     public PacienteDto buscarPacientePorId(Long id) {
         Paciente pacienteBuscado = pacienteRepository.findById(id).orElse(null);
         PacienteDto pacienteDto = null;
-        if(pacienteBuscado != null){
-            DomicilioDto domicilioDto = ObjectMapper.convertValue(pacienteBuscado.getDomicilio(), DomicilioDto.class);
+        if (pacienteBuscado != null) {
+            DomicilioDto domicilioDto = objectMapper.convertValue(pacienteBuscado.getDomicilio(), DomicilioDto.class);
+            pacienteDto = objectMapper.convertValue(pacienteBuscado, PacienteDto.class);
             pacienteDto.setDomicilioDto(domicilioDto);
             LOGGER.info("Paciente encontrado: {}", pacienteDto);
 
-        }
-        else LOGGER.info("El id no se encuentra registrado en la base de datos");
-
+        } else LOGGER.info("El id no se encuentra registrado en la base de datos");
 
         return pacienteDto;
     }

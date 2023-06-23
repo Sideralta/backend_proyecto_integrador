@@ -1,22 +1,37 @@
 package com.backend.clinicaOdontologica.dto;
 
 import com.backend.clinicaOdontologica.entity.Turno;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDateTime;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TurnoDto {
+    private Long id;
     private String paciente;
     private String odontologo;
-    private LocalDateTime fecha;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
+    private LocalDateTime fechaYHora;
 
     public TurnoDto() {
     }
 
-    public TurnoDto(String paciente, String odontologo, LocalDateTime fecha) {
+    public TurnoDto(Long id, String paciente, String odontologo, LocalDateTime fechaYHora, LocalDateTime fecha) {
+        this.id = id;
         this.paciente = paciente;
         this.odontologo = odontologo;
-        this.fecha = fecha;
+        this.fechaYHora = fecha;
+    }
+
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getPaciente() {
@@ -35,17 +50,17 @@ public class TurnoDto {
         this.odontologo = odontologo;
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
+    public LocalDateTime getFechaYHora() {
+        return fechaYHora;
     }
 
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
+    public void setFechaYHora(LocalDateTime fechaYHora) {
+        this.fechaYHora = fechaYHora;
     }
 
     public static TurnoDto fromTurno(Turno turno){
         String paciente = turno.getPaciente().getNombre() + " " + turno.getPaciente().getApellido();
         String odontologo = turno.getOdontologo().getNombre() + " " + turno.getOdontologo().getApellido();
-        return new TurnoDto(paciente,odontologo, turno.getFecha());
+        return new TurnoDto(turno.getId(), paciente, odontologo, turno.getFechaYhora());
     }
 }

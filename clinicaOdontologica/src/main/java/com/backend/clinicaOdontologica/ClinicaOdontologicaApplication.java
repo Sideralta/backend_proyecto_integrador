@@ -14,7 +14,6 @@ public class ClinicaOdontologicaApplication {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ClinicaOdontologicaApplication.class);
 
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
-		H2Connection.crearBd();
 		SpringApplication.run(ClinicaOdontologicaApplication.class, args);
 		LOGGER.info("Proyecto integrador is now running ...");
 	}
