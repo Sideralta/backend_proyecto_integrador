@@ -6,7 +6,7 @@ import com.backend.clinicaOdontologica.entity.Odontologo;
 import java.util.List;
 
 public interface IOdontologoService {
-    OdontologoDto buscarOdontologo(Long id);
+   
     OdontologoDto buscarOdontologoPorId(Long id);
     List<OdontologoDto> listarOdontologos();
 

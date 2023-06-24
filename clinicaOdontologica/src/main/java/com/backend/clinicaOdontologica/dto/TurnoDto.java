@@ -17,12 +17,13 @@ public class TurnoDto {
     public TurnoDto() {
     }
 
-    public TurnoDto(Long id, String paciente, String odontologo, LocalDateTime fechaYHora, LocalDateTime fecha) {
+    public TurnoDto(Long id, String paciente, String odontologo, LocalDateTime fechaYHora) {
         this.id = id;
         this.paciente = paciente;
         this.odontologo = odontologo;
-        this.fechaYHora = fecha;
+        this.fechaYHora = fechaYHora;
     }
+
 
 
 

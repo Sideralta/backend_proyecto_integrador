@@ -1,8 +1,11 @@
 package com.backend.clinicaOdontologica.controller;
 
+import com.backend.clinicaOdontologica.dto.OdontologoDto;
 import com.backend.clinicaOdontologica.entity.Odontologo;
 import com.backend.clinicaOdontologica.service.impl.OdontologoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,28 +30,30 @@ public class OdontologoController {
     }*/
 
     @GetMapping()
-    public List<Odontologo> listarOdontologos(){
+    public List<OdontologoDto> listarOdontologos(){
         return odontologoService.listarOdontologos();
     }
 
     @GetMapping("/{id}")
-    public Odontologo buscarOdontologoPorId(@PathVariable Long id){
-        return odontologoService.buscarOdontologo(id);
+    public ResponseEntity<?> buscarOdontologoPorId(@PathVariable Long id){
+        return new ResponseEntity<>(odontologoService.buscarOdontologoPorId(id), null, HttpStatus.OK);
     }
 
     @DeleteMapping("/eliminar/{id}")
-    public void eliminarOdontologo(@PathVariable int id){
+    public ResponseEntity<?> eliminarOdontologo(@PathVariable Long id){
+
         odontologoService.eliminarOdontologo(id);
+        return ResponseEntity.ok("Odontologo eliminado");
     }
 
     @PostMapping("/registrar")
-    public Odontologo registrarOdontologo(@RequestBody Odontologo odontologo){
-        return odontologoService.registrarOdontologo(odontologo);
+    public ResponseEntity<OdontologoDto> registrarOdontologo(@RequestBody Odontologo odontologo){
+        return new ResponseEntity<>(odontologoService.registrarOdontologo(odontologo), null, HttpStatus.CREATED);
     }
 
     @PutMapping("/actualizar")
-    public Odontologo actualizarOdontologo(@RequestBody Odontologo odontologo){
-        return odontologoService.actualizarOdontologo(odontologo);
+    public ResponseEntity<OdontologoDto> actualizarOdontologo(@RequestBody Odontologo odontologo){
+        return new ResponseEntity<>(odontologoService.actualizarOdontologo(odontologo), null, HttpStatus.OK);
 
     }
 }

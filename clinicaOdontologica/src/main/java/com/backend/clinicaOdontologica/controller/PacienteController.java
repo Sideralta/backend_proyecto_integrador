@@ -7,7 +7,6 @@ import com.backend.clinicaOdontologica.service.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,21 +43,25 @@ public class PacienteController {
         return respuesta;
     }
 
-    /*@GetMapping
-    public List<Paciente> listarTodos(){
+    @GetMapping
+    public List<PacienteDto> listarTodos(){
 
         return pacienteService.listarPacientes();
     }
 
     @GetMapping("/{id}")
-    public Paciente buscarPacientePorId(@PathVariable Long id){
-        return pacienteService.buscarPacientePorId(id);
+    public ResponseEntity<PacienteDto> buscarPacientePorId(@PathVariable Long id){
+        ResponseEntity<PacienteDto> respuesta;
+        PacienteDto pacienteDto = pacienteService.buscarPacientePorId(id);
+        if (pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.OK);
+        else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return respuesta;
     }
 
     //DELETE
     @DeleteMapping("/eliminar/{id}")
-    public void eliminarPaciente(@PathVariable int id){
+    public void eliminarPaciente(@PathVariable Long id){
         pacienteService.eliminarPaciente(id);
-    }*/
+    }
 
 }

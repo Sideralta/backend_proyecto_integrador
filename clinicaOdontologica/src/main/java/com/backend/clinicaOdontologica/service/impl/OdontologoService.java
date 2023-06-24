@@ -1,18 +1,18 @@
 package com.backend.clinicaOdontologica.service.impl;
-
-
-
 import com.backend.clinicaOdontologica.dto.OdontologoDto;
 import com.backend.clinicaOdontologica.entity.Odontologo;
 import com.backend.clinicaOdontologica.repository.OdontologoRepository;
 import com.backend.clinicaOdontologica.service.IOdontologoService;
+import com.backend.clinicaOdontologica.utils.JsonPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.logging.Logger;
+
 import java.util.stream.Collectors;
 
 @Service
@@ -42,10 +42,6 @@ public class OdontologoService implements IOdontologoService {
         return odontologoDto;
     }
 
-    @Override
-    public Odontologo buscarOdontologo(Long id) {
-        return null;
-    }
 
 
 
@@ -58,21 +54,35 @@ public class OdontologoService implements IOdontologoService {
 
     @Override
     public OdontologoDto registrarOdontologo(Odontologo odontologo) {
-        return objectMapper.convertValue(odontologoIDao.guardar(odontologo), OdontologoDto.class);
+        Odontologo odontologoGuardado = odontologoRepository.save(odontologo);
+        LOGGER.info("Odontologo guardado: {}", JsonPrinter.toString(odontologoGuardado));
+        return objectMapper.convertValue(odontologoGuardado, OdontologoDto.class);
     }
 
     @Override
     public OdontologoDto actualizarOdontologo(Odontologo odontologo) {
-        return objectMapper.convertValue(odontologoIDao.actualizar(odontologo), OdontologoDto.class);
+        Odontologo odontologoActualizar = odontologoRepository.findById(odontologo.getId()).orElse(null);
+        OdontologoDto odontologoDtoActualizado = null;
+        if (odontologoActualizar != null){
+            odontologoActualizar = odontologo;
+            odontologoRepository.save(odontologoActualizar);
+            odontologoDtoActualizado = objectMapper.convertValue(odontologoActualizar, OdontologoDto.class);
+            LOGGER.warn("Odontologo actualizado: {}", JsonPrinter.toString(odontologoDtoActualizado));
+        }else{
+            LOGGER.error("No fue posible actualizar los datos ya que el odontologo no se encuentra registrado");
+        }
+        return odontologoDtoActualizado;
     }
 
     @Override
     public void eliminarOdontologo(Long id) {
+        if (buscarOdontologoPorId(id) != null){
+            odontologoRepository.deleteById(id);
+            LOGGER.warn("Se ha eliminado el odontologo con id: {}", id);
+        } else {
+            LOGGER.error("No se ha encontrado el odontologo con id " + id);
+        }
 
-    }
-
-    public void eliminarOdontologo(int id) {
-        odontologoIDao.eliminar(id);
     }
 
 
