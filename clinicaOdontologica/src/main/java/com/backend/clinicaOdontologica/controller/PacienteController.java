@@ -3,6 +3,7 @@ package com.backend.clinicaOdontologica.controller;
 
 import com.backend.clinicaOdontologica.dto.PacienteDto;
 import com.backend.clinicaOdontologica.entity.Paciente;
+import com.backend.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.backend.clinicaOdontologica.service.IPacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,7 +61,7 @@ public class PacienteController {
 
     //DELETE
     @DeleteMapping("/eliminar/{id}")
-    public void eliminarPaciente(@PathVariable Long id){
+    public void eliminarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
         pacienteService.eliminarPaciente(id);
     }
 

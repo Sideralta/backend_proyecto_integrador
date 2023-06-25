@@ -25,7 +25,7 @@ public class Paciente {
     @NotNull
     private String apellido;
 
-    @Pattern(regexp = "[/d]")
+    //@Pattern(regexp = "[/d]")
     @Size(max = 12)
     private String dni;
 

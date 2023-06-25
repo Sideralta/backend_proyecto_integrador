@@ -5,8 +5,8 @@ package com.backend.clinicaOdontologica.service.impl;
 import com.backend.clinicaOdontologica.dto.DomicilioDto;
 import com.backend.clinicaOdontologica.dto.PacienteDto;
 import com.backend.clinicaOdontologica.entity.Domicilio;
-import com.backend.clinicaOdontologica.repository.IDao;
 import com.backend.clinicaOdontologica.entity.Paciente;
+import com.backend.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.backend.clinicaOdontologica.repository.PacienteRepository;
 import com.backend.clinicaOdontologica.service.IPacienteService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -76,12 +76,19 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public void eliminarPaciente(Long id) {
-        pacienteRepository.deleteById(id);
-        LOGGER.warn("Se ha eliminado el paciente con id {}", id);
+    public void eliminarPaciente(Long id) throws ResourceNotFoundException {
+        if(buscarPacientePorId(id) != null){
+            pacienteRepository.deleteById(id);
+            LOGGER.warn("Se ha eliminado el paciente con id {}", id);
+        } else {
+            LOGGER.error("No se ha encontrado el paciente con id " + id);
+            throw new ResourceNotFoundException("No se ha encontrado el paciente con id " + id);
+
+        }
 
     }
 
+ @Override
     public PacienteDto buscarPacientePorId(Long id) {
         Paciente pacienteBuscado = pacienteRepository.findById(id).orElse(null);
         PacienteDto pacienteDto = null;
