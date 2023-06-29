@@ -24,12 +24,21 @@ window.addEventListener('load', function () {
         .catch(err => console.log(err));
 
         function renderizarOdontologos(listado){
+        if(listado.length == 0){
+                        odontologoContainer.innerHTML = `
+                        <div>
+                        <p>No hay odontologos registrados</p>
+                    </div>
+                        `;
+                    }
             listado.forEach(odontologo => {
                 odontologoContainer.innerHTML +=`
-                <div>
-                <p>${odontologo.nombre}</p>
-                <p>${odontologo.apellido}</p>
-                <p>${odontologo.numeroMatricula}</p>
+                <div class="card-header">
+                <p>Nombre: ${odontologo.nombre}</p>
+                <hr>
+                <p>Apellido: ${odontologo.apellido}</p>
+                <hr>
+                <p>Matricula: ${odontologo.numeroMatricula}</p>
             </div>
 
                 `
