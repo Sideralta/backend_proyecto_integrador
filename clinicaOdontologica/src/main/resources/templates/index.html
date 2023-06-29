@@ -2,20 +2,21 @@
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible"content="IE-edge"/>
+    <meta http-equiv="x-ua-compatible"content="IE=edge"/>
     <meta name ="viewport" content="width= device-width, initial-scale= 1.0"/>
-    <link rel="stylesheet" href="styles/styles.css"/>
+    <link rel="stylesheet" href="styles.css"/>
     <title> CLINICA ODONTOLOGICA</title>
 </head>
 <body>
 <nav>
-    <h1>Clinica Odontologica</h1>
+    <div id="logos">
+        <h1>Clinica Odontologica</h1>
+        <img src="./assets/DigitalHouse_Logo_Black.png" alt="logo DH">
+    </div>
+
+
 
     <button type="submit" id="usuario">LOGIN USUARIO</button>
-
-
-
-
 
 
 
@@ -24,9 +25,46 @@
     <section>
         <article class="pacientes">
             <div>
-                h3
+                <h3>Pacientes</h3>
+                <button type="submit" id="listado-pacientes">Listado de pacientes</button>
+                <button type="submit" id="nuevo-paciente">Nuevo paciente</button>
+                <form id="formBuscar">
+                    <label>
+                        <input type="text" id="buscarPaciente" placeholder="Buscar por id"/>
+                    </label>
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+        </article>
+        <article class="odontologos">
+            <div>
+                <h3>Odontologos</h3>
+                <button type="submit" id="listado-odontologos">Listado de odontologos</button>
+                <button type="submit" id="nuevo-odontologo">Nuevo odontologo</button>
+                <form id="form-buscar">
+                    <label>
+                        <input type="text" id="buscarOdontologo" placeholder="Buscar por id"/>
+                    </label>
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+        </article>
+        <article class="turnos">
+            <div>
+                <h3>Turnos</h3>
+                <button type="submit" id="listado-turnos">Listado de turnos</button>
+                <button type="submit" id="turnosSemana">Turnos semanales</button>
+                <button type="submit" id="nuevoTurno">Nuevo turno</button>
+                <form id="form_buscar_turno">
+                    <label>
+                        <input type="text" id="idBuscar" placeholder="buscar por id"/>
+                    </label>
+                    <button type="submit">Buscar</button>
+                    <!-- <button type="submit">Turnos semanles</button> -->
+                </form>
             </div>
 
+        </article>
     </section>
 </main>
 

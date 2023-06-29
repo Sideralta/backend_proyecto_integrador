@@ -14,7 +14,10 @@ import com.backend.clinicaOdontologica.service.impl.OdontologoService;
 import com.backend.clinicaOdontologica.service.impl.PacienteService;
 import com.backend.clinicaOdontologica.service.impl.TurnoService;
 import org.junit.Assert;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class TurnoServiceTest {
     TurnoService turnoService;
     OdontologoService odontologoService;
@@ -39,37 +43,9 @@ class TurnoServiceTest {
 
 
     @Test
-    void deberiaAgregarUnTurno() throws BadRequestException {
+    @Order(1)
+    void deberiaAgregarTurnos() throws BadRequestException {
 
-        /*TurnoDto turnoDto = null;
-        PacienteDto paciente = pacienteService.buscarPacientePorId(turno.getPaciente().getId());
-        OdontologoDto odontologo = odontologoService.buscarOdontologoPorId(turno.getOdontologo().getId());*/
-
-        Domicilio domicilio = new Domicilio("Guaviyu", 1359, "Montevideo", "Montevideo");
-        Paciente paciente = new Paciente("Jose", "Rodriguez", "3205632", LocalDate.now(), domicilio);
-        Odontologo odontologo = new Odontologo("1235","Jorge","fernandez");
-
-
-
-        PacienteDto pacienteDto = pacienteService.guardarPaciente(paciente);
-        OdontologoDto odontologoDto = odontologoService.registrarOdontologo(odontologo);
-
-
-
-
-
-        TurnoDto turnoDto = turnoService.guardarTurno(new Turno(paciente, odontologo, LocalDateTime.of(2025,4,2,10,10,30)));
-
-
-
-        Assert.assertNotNull(turnoService.buscarTurnoPorId(turnoDto.getId()));
-        Assert.assertEquals(LocalDateTime.of(2025,4,2,10,10,30), turnoDto.getFechaYHora());
-
-
-    }
-
-    @Test
-    void deberiaEliminarTurno() throws BadRequestException, ResourceNotFoundException {
         Domicilio domicilio = new Domicilio("Guaviyu", 1359, "Montevideo", "Montevideo");
         Paciente paciente = new Paciente("Jose", "Rodriguez", "3205632", LocalDate.now(), domicilio);
         Odontologo odontologo = new Odontologo("1235","Jorge","fernandez");
@@ -78,34 +54,9 @@ class TurnoServiceTest {
         Paciente paciente2 = new Paciente("Juan", "Perez", "3205652", LocalDate.now(), domicilio2);
         Odontologo odontologo2 = new Odontologo("4444","Fede","Dominguez");
 
-
-        PacienteDto pacienteDto = pacienteService.guardarPaciente(paciente);
-        OdontologoDto odontologoDto = odontologoService.registrarOdontologo(odontologo);
-
-       PacienteDto pacienteDto2 = pacienteService.guardarPaciente(paciente2);
-        OdontologoDto odontologoDto2 = odontologoService.registrarOdontologo(odontologo2);
-
-
-
-
-
-        TurnoDto turnoDto = turnoService.guardarTurno(new Turno(paciente, odontologo, LocalDateTime.of(2025,4,2,10,10,30)));
-        TurnoDto turnoDto2 = turnoService.guardarTurno(new Turno(paciente2, odontologo2, LocalDateTime.of(2026,7,2,10,10,30)));
-
-        turnoService.eliminarTurno(turnoDto.getId());
-        Assert.assertNull(turnoService.buscarTurnoPorId(turnoDto.getId()));
-
-    }
-
-    @Test
-    void deberiaListarTodosLosTurnos() throws BadRequestException {
-        Domicilio domicilio = new Domicilio("Guaviyu", 1359, "Montevideo", "Montevideo");
-        Paciente paciente = new Paciente("Jose", "Rodriguez", "3205632", LocalDate.now(), domicilio);
-        Odontologo odontologo = new Odontologo("1235","Jorge","fernandez");
-
-        Domicilio domicilio2 = new Domicilio("Corumbe", 1359, "Montevideo", "Montevideo");
-        Paciente paciente2 = new Paciente("Juan", "Perez", "3205652", LocalDate.now(), domicilio2);
-        Odontologo odontologo2 = new Odontologo("4444","Fede","Dominguez");
+        Domicilio domicilio3 = new Domicilio("Jackson", 1359, "Montevideo", "Montevideo");
+        Paciente paciente3 = new Paciente("Sofia", "Mendez", "565656", LocalDate.now(), domicilio3);
+        Odontologo odontologo3 = new Odontologo("3333","Federico","Dominguez");
 
 
         PacienteDto pacienteDto = pacienteService.guardarPaciente(paciente);
@@ -114,9 +65,36 @@ class TurnoServiceTest {
         PacienteDto pacienteDto2 = pacienteService.guardarPaciente(paciente2);
         OdontologoDto odontologoDto2 = odontologoService.registrarOdontologo(odontologo2);
 
+        PacienteDto pacienteDto3 = pacienteService.guardarPaciente(paciente3);
+        OdontologoDto odontologoDto3 = odontologoService.registrarOdontologo(odontologo3);
+
 
         TurnoDto turnoDto = turnoService.guardarTurno(new Turno(paciente, odontologo, LocalDateTime.of(2025,4,2,10,10,30)));
         TurnoDto turnoDto2 = turnoService.guardarTurno(new Turno(paciente2, odontologo2, LocalDateTime.of(2026,7,2,10,10,30)));
+        TurnoDto turnoDto3 = turnoService.guardarTurno(new Turno(paciente3, odontologo3, LocalDateTime.of(2025,4,2,11,10,30)));
+
+
+        Assert.assertNotNull(turnoService.buscarTurnoPorId(turnoDto.getId()));
+        Assert.assertNotNull(turnoService.buscarTurnoPorId(turnoDto2.getId()));
+        Assert.assertNotNull(turnoService.buscarTurnoPorId(turnoDto3.getId()));
+        Assert.assertEquals(LocalDateTime.of(2026,7,2,10,10,30), turnoDto2.getFechaYHora());
+
+
+    }
+
+    @Test
+    @Order(2)
+    void deberiaEliminarTurno() throws BadRequestException, ResourceNotFoundException {
+
+        turnoService.eliminarTurno(1L);
+        Assert.assertNull(turnoService.buscarTurnoPorId(1L));
+
+    }
+
+    @Test
+    @Order(3)
+    void deberiaListarTodosLosTurnos() throws BadRequestException {
+
 
         List<TurnoDto> turnos = new ArrayList<>(turnoService.listarTodos());
 
