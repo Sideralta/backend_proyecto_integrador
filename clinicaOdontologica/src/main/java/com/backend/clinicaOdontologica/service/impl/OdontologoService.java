@@ -1,4 +1,5 @@
 package com.backend.clinicaOdontologica.service.impl;
+
 import com.backend.clinicaOdontologica.dto.OdontologoDto;
 import com.backend.clinicaOdontologica.entity.Odontologo;
 import com.backend.clinicaOdontologica.exceptions.ResourceNotFoundException;
@@ -6,15 +7,12 @@ import com.backend.clinicaOdontologica.repository.OdontologoRepository;
 import com.backend.clinicaOdontologica.service.IOdontologoService;
 import com.backend.clinicaOdontologica.utils.JsonPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import java.util.stream.Collectors;
 
 @Service
 public class OdontologoService implements IOdontologoService {
@@ -29,12 +27,10 @@ public class OdontologoService implements IOdontologoService {
     }
 
 
-
-
     public OdontologoDto buscarOdontologoPorId(Long id) {
         Odontologo odontologoBuscado = odontologoRepository.findById(id).orElse(null);
         OdontologoDto odontologoDto = null;
-        if (odontologoBuscado != null){
+        if (odontologoBuscado != null) {
             odontologoDto = objectMapper.convertValue(odontologoBuscado, OdontologoDto.class);
             LOGGER.info("Odontologo encontrado: {}", JsonPrinter.toString(odontologoDto));
         } else {
@@ -42,8 +38,6 @@ public class OdontologoService implements IOdontologoService {
         }
         return odontologoDto;
     }
-
-
 
 
     public List<OdontologoDto> listarOdontologos() {
@@ -64,12 +58,12 @@ public class OdontologoService implements IOdontologoService {
     public OdontologoDto actualizarOdontologo(Odontologo odontologo) {
         Odontologo odontologoActualizar = odontologoRepository.findById(odontologo.getId()).orElse(null);
         OdontologoDto odontologoDtoActualizado = null;
-        if (odontologoActualizar != null){
+        if (odontologoActualizar != null) {
             odontologoActualizar = odontologo;
             odontologoRepository.save(odontologoActualizar);
             odontologoDtoActualizado = objectMapper.convertValue(odontologoActualizar, OdontologoDto.class);
             LOGGER.warn("Odontologo actualizado: {}", JsonPrinter.toString(odontologoDtoActualizado));
-        }else{
+        } else {
             LOGGER.error("No fue posible actualizar los datos ya que el odontologo no se encuentra registrado");
         }
         return odontologoDtoActualizado;
@@ -85,7 +79,6 @@ public class OdontologoService implements IOdontologoService {
             throw new ResourceNotFoundException("No se ha encontrado el odontologo con id " + id);
         }
     }
-
 
 
 }

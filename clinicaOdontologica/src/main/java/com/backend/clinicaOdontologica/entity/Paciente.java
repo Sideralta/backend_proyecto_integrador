@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
@@ -29,7 +28,7 @@ public class Paciente {
     @Size(max = 12)
     private String dni;
 
-    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @FutureOrPresent
     private LocalDate fechaIngreso;
 
@@ -37,17 +36,13 @@ public class Paciente {
     @JoinColumn(name = "domicilio_id")
     private Domicilio domicilio;
 
-   @OneToOne(mappedBy = "paciente")
+    @OneToOne(mappedBy = "paciente")
     private Turno turno;
 
 
+    public Paciente() {
 
-
- 
-
-   public Paciente(){
-
-   }
+    }
 
     public Paciente(String nombre, String apellido, String dni, LocalDate fechaIngreso, Domicilio domicilio) {
         this.nombre = nombre;

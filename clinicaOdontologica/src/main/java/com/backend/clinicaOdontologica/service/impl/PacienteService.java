@@ -1,7 +1,6 @@
 package com.backend.clinicaOdontologica.service.impl;
 
 
-
 import com.backend.clinicaOdontologica.dto.DomicilioDto;
 import com.backend.clinicaOdontologica.dto.PacienteDto;
 import com.backend.clinicaOdontologica.entity.Domicilio;
@@ -10,14 +9,12 @@ import com.backend.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.backend.clinicaOdontologica.repository.PacienteRepository;
 import com.backend.clinicaOdontologica.service.IPacienteService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 
 @Service
@@ -33,7 +30,7 @@ public class PacienteService implements IPacienteService {
     }
 
     @Override
-    public List<PacienteDto> listarPacientes(){
+    public List<PacienteDto> listarPacientes() {
         List<Paciente> pacientes = pacienteRepository.findAll();
         List<PacienteDto> pacienteDtos = pacientes.stream()
                 .map(paciente -> {
@@ -62,7 +59,7 @@ public class PacienteService implements IPacienteService {
         Paciente pacienteAActualizar = pacienteRepository.findById(paciente.getId()).orElse(null);
         PacienteDto pacienteActualizadoDto = null;
 
-        if(pacienteAActualizar != null){
+        if (pacienteAActualizar != null) {
             pacienteAActualizar = paciente;
             pacienteRepository.save(pacienteAActualizar);
 
@@ -77,7 +74,7 @@ public class PacienteService implements IPacienteService {
 
     @Override
     public void eliminarPaciente(Long id) throws ResourceNotFoundException {
-        if(buscarPacientePorId(id) != null){
+        if (buscarPacientePorId(id) != null) {
             pacienteRepository.deleteById(id);
             LOGGER.warn("Se ha eliminado el paciente con id {}", id);
         } else {
@@ -88,7 +85,7 @@ public class PacienteService implements IPacienteService {
 
     }
 
- @Override
+    @Override
     public PacienteDto buscarPacientePorId(Long id) {
         Paciente pacienteBuscado = pacienteRepository.findById(id).orElse(null);
         PacienteDto pacienteDto = null;

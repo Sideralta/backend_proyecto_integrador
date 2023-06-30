@@ -7,7 +7,6 @@ import com.backend.clinicaOdontologica.entity.Domicilio;
 import com.backend.clinicaOdontologica.entity.Odontologo;
 import com.backend.clinicaOdontologica.entity.Paciente;
 import com.backend.clinicaOdontologica.entity.Turno;
-
 import com.backend.clinicaOdontologica.exceptions.BadRequestException;
 import com.backend.clinicaOdontologica.exceptions.ResourceNotFoundException;
 import com.backend.clinicaOdontologica.service.impl.OdontologoService;
@@ -41,22 +40,21 @@ class TurnoServiceTest {
     }
 
 
-
     @Test
     @Order(1)
     void deberiaAgregarTurnos() throws BadRequestException {
 
         Domicilio domicilio = new Domicilio("Guaviyu", 1359, "Montevideo", "Montevideo");
         Paciente paciente = new Paciente("Jose", "Rodriguez", "3205632", LocalDate.now(), domicilio);
-        Odontologo odontologo = new Odontologo("1235","Jorge","fernandez");
+        Odontologo odontologo = new Odontologo("1235", "Jorge", "fernandez");
 
         Domicilio domicilio2 = new Domicilio("Corumbe", 1359, "Montevideo", "Montevideo");
         Paciente paciente2 = new Paciente("Juan", "Perez", "3205652", LocalDate.now(), domicilio2);
-        Odontologo odontologo2 = new Odontologo("4444","Fede","Dominguez");
+        Odontologo odontologo2 = new Odontologo("4444", "Fede", "Dominguez");
 
         Domicilio domicilio3 = new Domicilio("Jackson", 1359, "Montevideo", "Montevideo");
         Paciente paciente3 = new Paciente("Sofia", "Mendez", "565656", LocalDate.now(), domicilio3);
-        Odontologo odontologo3 = new Odontologo("3333","Federico","Dominguez");
+        Odontologo odontologo3 = new Odontologo("3333", "Federico", "Dominguez");
 
 
         PacienteDto pacienteDto = pacienteService.guardarPaciente(paciente);
@@ -69,15 +67,15 @@ class TurnoServiceTest {
         OdontologoDto odontologoDto3 = odontologoService.registrarOdontologo(odontologo3);
 
 
-        TurnoDto turnoDto = turnoService.guardarTurno(new Turno(paciente, odontologo, LocalDateTime.of(2025,4,2,10,10,30)));
-        TurnoDto turnoDto2 = turnoService.guardarTurno(new Turno(paciente2, odontologo2, LocalDateTime.of(2026,7,2,10,10,30)));
-        TurnoDto turnoDto3 = turnoService.guardarTurno(new Turno(paciente3, odontologo3, LocalDateTime.of(2025,4,2,11,10,30)));
+        TurnoDto turnoDto = turnoService.guardarTurno(new Turno(paciente, odontologo, LocalDateTime.of(2025, 4, 2, 10, 10, 30)));
+        TurnoDto turnoDto2 = turnoService.guardarTurno(new Turno(paciente2, odontologo2, LocalDateTime.of(2026, 7, 2, 10, 10, 30)));
+        TurnoDto turnoDto3 = turnoService.guardarTurno(new Turno(paciente3, odontologo3, LocalDateTime.of(2025, 4, 2, 11, 10, 30)));
 
 
         Assert.assertNotNull(turnoService.buscarTurnoPorId(turnoDto.getId()));
         Assert.assertNotNull(turnoService.buscarTurnoPorId(turnoDto2.getId()));
         Assert.assertNotNull(turnoService.buscarTurnoPorId(turnoDto3.getId()));
-        Assert.assertEquals(LocalDateTime.of(2026,7,2,10,10,30), turnoDto2.getFechaYHora());
+        Assert.assertEquals(LocalDateTime.of(2026, 7, 2, 10, 10, 30), turnoDto2.getFechaYHora());
 
 
     }
@@ -100,7 +98,6 @@ class TurnoServiceTest {
 
         Assert.assertFalse(turnos.isEmpty());
         Assert.assertTrue(turnos.size() > 1);
-
 
 
     }

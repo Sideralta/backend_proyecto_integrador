@@ -1,7 +1,5 @@
 package com.backend.clinicaOdontologica.entity;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
-
 import javax.persistence.*;
 
 @Entity
@@ -16,7 +14,7 @@ public class Domicilio {
     private String localidad;
     private String provincia;
 
-    public Domicilio(){
+    public Domicilio() {
 
     }
 

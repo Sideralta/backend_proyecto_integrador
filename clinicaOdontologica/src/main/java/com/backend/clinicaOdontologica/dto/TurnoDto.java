@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDateTime;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TurnoDto {
     private Long id;
@@ -23,8 +24,6 @@ public class TurnoDto {
         this.odontologo = odontologo;
         this.fechaYHora = fechaYHora;
     }
-
-
 
 
     public Long getId() {
@@ -59,7 +58,7 @@ public class TurnoDto {
         this.fechaYHora = fechaYHora;
     }
 
-    public static TurnoDto fromTurno(Turno turno){
+    public static TurnoDto fromTurno(Turno turno) {
         String paciente = turno.getPaciente().getNombre() + " " + turno.getPaciente().getApellido();
         String odontologo = turno.getOdontologo().getNombre() + " " + turno.getOdontologo().getApellido();
         return new TurnoDto(turno.getId(), paciente, odontologo, turno.getFechaYhora());

@@ -10,11 +10,11 @@ import java.sql.SQLException;
 @SpringBootApplication
 public class ClinicaOdontologicaApplication {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ClinicaOdontologicaApplication.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ClinicaOdontologicaApplication.class);
 
-	public static void main(String[] args) throws SQLException, ClassNotFoundException {
-		SpringApplication.run(ClinicaOdontologicaApplication.class, args);
-		LOGGER.info("Proyecto integrador is now running ...");
-	}
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        SpringApplication.run(ClinicaOdontologicaApplication.class, args);
+        LOGGER.info("Proyecto integrador is now running ...");
+    }
 
 }

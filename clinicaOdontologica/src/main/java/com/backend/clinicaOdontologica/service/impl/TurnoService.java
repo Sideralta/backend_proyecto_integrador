@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import java.util.List;
 
 @Service
@@ -33,21 +32,17 @@ public class TurnoService implements ITurnoService {
     }
 
 
-
-
-
     @Override
     public TurnoDto guardarTurno(Turno turno) throws BadRequestException {
         TurnoDto turnoDto = null;
         PacienteDto paciente = pacienteService.buscarPacientePorId(turno.getPaciente().getId());
         OdontologoDto odontologo = odontologoService.buscarOdontologoPorId(turno.getOdontologo().getId());
 
-        if(paciente == null || odontologo == null) {
-            if(paciente == null && odontologo == null) {
+        if (paciente == null || odontologo == null) {
+            if (paciente == null && odontologo == null) {
                 LOGGER.error("El paciente y el odontologo no se encuentran en nuestra base de datos");
                 throw new BadRequestException("El paciente no se encuentra en nuestra base de datos");
-            }
-            else if (paciente == null){
+            } else if (paciente == null) {
                 LOGGER.error("El paciente no se encuentra en nuestra base de datos");
                 throw new BadRequestException("El paciente no se encuentra en nuestra base de datos");
             } else {
@@ -78,10 +73,10 @@ public class TurnoService implements ITurnoService {
     public TurnoDto buscarTurnoPorId(Long id) {
         Turno turnoBuscado = turnoRepository.findById(id).orElse(null);
         TurnoDto turnoDto = null;
-        if (turnoBuscado != null){
+        if (turnoBuscado != null) {
             turnoDto = TurnoDto.fromTurno(turnoBuscado);
             LOGGER.info("Turno encontrado: {}", JsonPrinter.toString(turnoDto));
-        }else LOGGER.info("El id no se encuentra registrado en la base de datos");
+        } else LOGGER.info("El id no se encuentra registrado en la base de datos");
         return turnoDto;
     }
 
@@ -89,7 +84,7 @@ public class TurnoService implements ITurnoService {
     public TurnoDto actualizarTurno(Turno turno) {
         Turno turnoActualizar = turnoRepository.findById(turno.getId()).orElse(null);
         TurnoDto turnoActulizarDto = null;
-        if (turnoActualizar != null){
+        if (turnoActualizar != null) {
             turnoActualizar = turno;
             turnoRepository.save(turnoActualizar);
             turnoActulizarDto = TurnoDto.fromTurno(turnoActualizar);

@@ -12,7 +12,7 @@ public class DomicilioDto {
     private String provincia;
 
 
-    public DomicilioDto(){
+    public DomicilioDto() {
 
     }
 

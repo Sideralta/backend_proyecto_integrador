@@ -28,11 +28,11 @@ class PacienteServiceTest {
 
     @Test
     @Order(1)
-    void deberiaAgregarPacientes(){
+    void deberiaAgregarPacientes() {
 
-        Domicilio domicilio1 = new Domicilio("Guaviyu", 1359, "Montevideo","Montevideo");
-        Domicilio domicilio2 = new Domicilio("Jackson", 200, "Montevideo","Montevideo");
-        Domicilio domicilio3 = new Domicilio("Mercedes", 59, "Montevideo","Montevideo");
+        Domicilio domicilio1 = new Domicilio("Guaviyu", 1359, "Montevideo", "Montevideo");
+        Domicilio domicilio2 = new Domicilio("Jackson", 200, "Montevideo", "Montevideo");
+        Domicilio domicilio3 = new Domicilio("Mercedes", 59, "Montevideo", "Montevideo");
 
         PacienteDto pacienteDto1 = pacienteService.guardarPaciente(new Paciente("Jose", "Rodriguez", "3205632", LocalDate.now(), domicilio1));
         PacienteDto pacienteDto2 = pacienteService.guardarPaciente(new Paciente("Santiago", "Hernandez", "3205632", LocalDate.now(), domicilio2));
@@ -47,7 +47,7 @@ class PacienteServiceTest {
 
     @Test
     @Order(2)
-    void deberiaBuscarUnPacientePorId(){
+    void deberiaBuscarUnPacientePorId() {
 
         Assert.assertNotNull(pacienteService.buscarPacientePorId(2L));
 
@@ -55,7 +55,7 @@ class PacienteServiceTest {
 
     @Test
     @Order(3)
-    void deberiaListarTodosLosPacientes(){
+    void deberiaListarTodosLosPacientes() {
 
 
         List<PacienteDto> pacienteDtos = pacienteService.listarPacientes();

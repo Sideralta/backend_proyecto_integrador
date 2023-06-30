@@ -18,6 +18,7 @@ import java.util.List;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class OdontologoServiceTest {
     OdontologoService odontologoService;
+
     @Autowired
     public OdontologoServiceTest(OdontologoService odontologoService) {
         this.odontologoService = odontologoService;
@@ -27,9 +28,9 @@ class OdontologoServiceTest {
     @Order(1)
     void deberiaAgregarUnOdontologo() {
 
-        OdontologoDto odontologoDto1 = odontologoService.registrarOdontologo(new Odontologo("1235","Jorge","fernandez"));
-        OdontologoDto odontologoDto2 = odontologoService.registrarOdontologo(new Odontologo("12345", "Peter","Hernandez"));
-        OdontologoDto odontologoDto3 = odontologoService.registrarOdontologo(new Odontologo("12345", "Juan","Perez"));
+        OdontologoDto odontologoDto1 = odontologoService.registrarOdontologo(new Odontologo("1235", "Jorge", "fernandez"));
+        OdontologoDto odontologoDto2 = odontologoService.registrarOdontologo(new Odontologo("12345", "Peter", "Hernandez"));
+        OdontologoDto odontologoDto3 = odontologoService.registrarOdontologo(new Odontologo("12345", "Juan", "Perez"));
 
         Assert.assertNotNull(odontologoDto1);
         Assert.assertNotNull(odontologoDto2);
@@ -41,13 +42,12 @@ class OdontologoServiceTest {
 
     @Test
     @Order(2)
-    void deberiaListarOdontologos(){
+    void deberiaListarOdontologos() {
 
         List<OdontologoDto> odontologoDtoList = odontologoService.listarOdontologos();
 
         Assert.assertFalse(odontologoDtoList.isEmpty());
         Assert.assertTrue(odontologoDtoList.size() > 2);
-
 
 
     }
@@ -57,8 +57,8 @@ class OdontologoServiceTest {
     void deberiaEliminarOdontologo() throws ResourceNotFoundException {
 
 
-         odontologoService.eliminarOdontologo(1L);
-         Assert.assertNull(odontologoService.buscarOdontologoPorId(1L));
+        odontologoService.eliminarOdontologo(1L);
+        Assert.assertNull(odontologoService.buscarOdontologoPorId(1L));
 
     }
 

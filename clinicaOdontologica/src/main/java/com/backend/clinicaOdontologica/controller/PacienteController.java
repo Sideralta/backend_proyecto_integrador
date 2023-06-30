@@ -25,33 +25,33 @@ public class PacienteController {
 
 
     @PostMapping("/registrar")
-    public ResponseEntity<PacienteDto> regisrarPaciente(@RequestBody Paciente paciente){
+    public ResponseEntity<PacienteDto> regisrarPaciente(@RequestBody Paciente paciente) {
         ResponseEntity<PacienteDto> respuesta;
         PacienteDto pacienteDto = pacienteService.guardarPaciente(paciente);
-        if(pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.CREATED);
+        if (pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.CREATED);
         else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 
         return respuesta;
     }
 
     @PutMapping("/actualizar")
-    public ResponseEntity<PacienteDto> actualizarPaciente(@RequestBody Paciente paciente){
+    public ResponseEntity<PacienteDto> actualizarPaciente(@RequestBody Paciente paciente) {
         ResponseEntity<PacienteDto> respuesta;
         PacienteDto pacienteDto = pacienteService.actualizarPaciente(paciente);
-        if(pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.OK);
+        if (pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.OK);
         else respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
         return respuesta;
     }
 
     @GetMapping
-    public List<PacienteDto> listarTodos(){
+    public List<PacienteDto> listarTodos() {
 
         return pacienteService.listarPacientes();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PacienteDto> buscarPacientePorId(@PathVariable Long id){
+    public ResponseEntity<PacienteDto> buscarPacientePorId(@PathVariable Long id) {
         ResponseEntity<PacienteDto> respuesta;
         PacienteDto pacienteDto = pacienteService.buscarPacientePorId(id);
         if (pacienteDto != null) respuesta = new ResponseEntity<>(pacienteDto, null, HttpStatus.OK);

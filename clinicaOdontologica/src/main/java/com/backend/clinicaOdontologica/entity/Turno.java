@@ -8,11 +8,11 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
-@Table( name = "TURNOS")
+@Table(name = "TURNOS")
 public class Turno {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -22,11 +22,10 @@ public class Turno {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "odontologo_id")
     private Odontologo odontologo;
-    @JsonFormat (shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     @FutureOrPresent(message = "La fecha no puede ser anterior al dia de hoy")
     @NotNull(message = "Especifique fecha y hora del turno")
     private LocalDateTime fechaYhora;
-
 
 
     public Turno(Paciente paciente, Odontologo odontologo, LocalDateTime fechaYhora) {
@@ -41,7 +40,7 @@ public class Turno {
     public Long getId() {
         return id;
     }
-    
+
 
     public Paciente getPaciente() {
         return paciente;

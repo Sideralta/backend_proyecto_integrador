@@ -19,17 +19,18 @@ public class OdontologoController {
     private OdontologoService odontologoService;
 
     @Autowired
-    public OdontologoController(OdontologoService odontologoService) {this.odontologoService = odontologoService;}
-
+    public OdontologoController(OdontologoService odontologoService) {
+        this.odontologoService = odontologoService;
+    }
 
 
     @GetMapping()
-    public List<OdontologoDto> listarOdontologos(){
+    public List<OdontologoDto> listarOdontologos() {
         return odontologoService.listarOdontologos();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscarOdontologoPorId(@PathVariable Long id){
+    public ResponseEntity<?> buscarOdontologoPorId(@PathVariable Long id) {
         return new ResponseEntity<>(odontologoService.buscarOdontologoPorId(id), null, HttpStatus.OK);
     }
 
@@ -41,12 +42,12 @@ public class OdontologoController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<OdontologoDto> registrarOdontologo(@RequestBody Odontologo odontologo){
+    public ResponseEntity<OdontologoDto> registrarOdontologo(@RequestBody Odontologo odontologo) {
         return new ResponseEntity<>(odontologoService.registrarOdontologo(odontologo), null, HttpStatus.CREATED);
     }
 
     @PutMapping("/actualizar")
-    public ResponseEntity<OdontologoDto> actualizarOdontologo(@RequestBody Odontologo odontologo){
+    public ResponseEntity<OdontologoDto> actualizarOdontologo(@RequestBody Odontologo odontologo) {
         return new ResponseEntity<>(odontologoService.actualizarOdontologo(odontologo), null, HttpStatus.OK);
 
     }
