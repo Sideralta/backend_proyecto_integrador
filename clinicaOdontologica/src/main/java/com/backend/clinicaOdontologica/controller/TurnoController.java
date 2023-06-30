@@ -27,11 +27,6 @@ public class TurnoController {
     public ResponseEntity<?> buscarTurnoPorId(@PathVariable Long id) {
         return new ResponseEntity<>(turnoService.buscarTurnoPorId(id), null, HttpStatus.OK);
 
-       /* ResponseEntity<TurnoDto> respuesta;
-        TurnoDto turnoDto = turnoService.buscarTurnoPorId(id);
-        if (turnoDto != null) respuesta = new ResponseEntity<>(turnoDto, null, HttpStatus.OK);
-        else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        return respuesta;*/
     }
 
     @GetMapping()
@@ -44,12 +39,6 @@ public class TurnoController {
     public ResponseEntity<TurnoDto> guardarTurno(@RequestBody Turno turno) throws BadRequestException {
 
         return new ResponseEntity<>(turnoService.guardarTurno(turno), null, HttpStatus.CREATED);
-
-        /*ResponseEntity<TurnoDto> respuesta;
-        TurnoDto turnoDto = turnoService.guardarTurno(turno);
-        if (turnoDto != null) respuesta = new ResponseEntity<>(turnoDto, null, HttpStatus.CREATED);
-        else respuesta = ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        return respuesta;*/
     }
 
     //DELETE
@@ -63,12 +52,6 @@ public class TurnoController {
     @PutMapping("/actualizar")
     public ResponseEntity<TurnoDto> actualizarTurno(@RequestBody Turno turno) {
         return new ResponseEntity<>(turnoService.actualizarTurno(turno), null, HttpStatus.OK);
-
-       /* ResponseEntity<TurnoDto> respuesta;
-        TurnoDto turnoDto = turnoService.actualizarTurno(turno);
-        if (turnoDto != null) respuesta = new ResponseEntity<>(turnoDto, null, HttpStatus.OK);
-        else respuesta = ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        return respuesta;*/
     }
 
 

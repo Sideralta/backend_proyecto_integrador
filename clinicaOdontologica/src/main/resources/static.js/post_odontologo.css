@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 300;
+    box-sizing: border-box;
+
+  }
+
+  :root {
+      --card-bg: #8ecae6;
+      --shadow: 2px 5px 5px darkgray;
+      --white: whitesmoke;
+      --border-gray: 2px solid darkgray;
+    }
+     button {
+          padding: 10px 25px;
+          border: none;
+          border-radius: 5px;
+          background-color: #219ebc;
+          color: #023047;
+          font-weight: bold;
+          box-shadow: var(--shadow);
+          transition: box-shadow 0.5s;
+        }
+     button:hover{
+        background-color: #caf0f8;
+        transition: all .3s;
+
+     }
+nav{
+background-color: #8ecae6;
+height: 100px;
+}
+  body{
+  background-image: url('../assets/papel-pintado-sano-de-la-historieta-del-diente-9228882.webp');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+  }
+a{
+   all: unset;
+}
+
+  .card-header {
+     box-shadow: var(--shadow);
+     border-radius: 10px;
+     width: 250px;
+     height: 300px;
+     margin: 1.5rem auto;
+     padding: 1rem;
+     color: #023047;
+     background-color: var(--card-bg);
+     background-image: url('../assets/images.jpg');
+     display: flex;
+     flex-direction: column;
+     justify-content: space-around;
+
+   }
+
+   .control-label{
+   border-radius: 5px;
+   background-color: #219ebc;
+   box-shadow: var(--shadow);
+   transition: box-shadow 0.5s;
+
+   }
+
+   form {
+   display:flex;
+   flex-direction: column;
+   justify-content: space-between;
+   height: 200px;
+   }

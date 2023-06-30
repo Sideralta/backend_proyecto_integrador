@@ -22,14 +22,6 @@ public class OdontologoController {
     public OdontologoController(OdontologoService odontologoService) {this.odontologoService = odontologoService;}
 
 
-    /*@GetMapping("/index")
-    public String buscarOdontologo(Model model, @RequestParam("id") int id) {
-        Odontologo odontologo = odontologoService.buscarOdontologo(id);
-
-        //agregar los atributos del objeto al modelo que mostraremos en la vista
-        model.addAttribute("matricula", odontologo.getNumeroMatricula());
-        return "index";
-    }*/
 
     @GetMapping()
     public List<OdontologoDto> listarOdontologos(){

@@ -22,11 +22,18 @@ body{
 header{
 height: 50px:
 }
-h1{
-    background-color: #8ecae6;
-    height: 20%;
+nav{
+background-color: #8ecae6;
+height: 100px;
 }
+#logos{
+    display: flex;
+    flex-direction: column;
 
+    height: 50px;
+    width: 300px;
+
+ }
 .card-header {
     box-shadow: var(--shadow);
     border-radius: 10px;
@@ -48,3 +55,4 @@ h1{
     display: flex;
     justify-content: space-around;
       }
+

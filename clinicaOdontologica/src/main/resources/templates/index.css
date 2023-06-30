@@ -66,6 +66,7 @@ a{
     }
  button:hover{
     background-color: #caf0f8;
+    transition: all .3s;
 
  }
 
@@ -93,5 +94,42 @@ a{
    justify-content: space-between;
 
  }
+ ul {
+list-style: none;
+
+}
+
+.desplegable > li{
+position: relative;
+display: inline-block;
+}
+
+
+.submenu{
+position: absolute;
+background-color:  #219ebc;
+width: 100%;
+height: 400%;
+visibility: hidden;
+opacity: 0;
+transition: opacity 1.5s;
+}
+
+.submenu li a{
+display: block;
+padding: 15px;
+color: #fff;
+font-family: 'Open Sans';
+text-decoration: none;
+
+
+}
+
+.desplegable li:hover .submenu{
+visibility: visible;
+opacity: 1;
+}
+
+
 
 
